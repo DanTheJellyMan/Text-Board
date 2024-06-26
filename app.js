@@ -9,7 +9,16 @@ socket.on('message', text => {
 
 });
 
+document.querySelector("input").onkeydown = (event) => {
+    if (event.key == "Enter") {
+        const text = document.querySelector('input').value;
+        socket.emit('message', text);
+    }
+}
+
+/* Code for button input
 document.querySelector('button').onclick = () => {
     const text = document.querySelector('input').value;
     socket.emit('message', text)
 }
+*/
