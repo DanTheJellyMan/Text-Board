@@ -1,0 +1,104 @@
+@font-face {
+    font-family: "Otomanopee";
+    src: url("OtomanopeeOne-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(90, 180, 255);
+    font-family: "Otomanopee";
+}
+
+header {
+    font-family: sans-serif;
+    padding: 10px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    background: linear-gradient(180deg, rgb(45, 90, 130), rgb(90, 180, 255) 70%);
+}
+
+header > h1 {
+    font-size: 100px;
+    margin-bottom: 10px;
+}
+
+header > p {
+    font-size: 20px;
+    color: white;
+}
+
+ul {
+    width: 50%;
+    min-height: 2em;
+    max-height: 10em;
+    overflow: scroll;
+    margin: 30px auto 10px auto;
+    padding: 10px;
+    padding-left: 25px;
+    background: linear-gradient(180deg, rgba(100, 140, 255, 0.8) 30%, rgb(160, 100, 255, 0.8) 85%);
+    border: 3px solid rgba(20, 120, 255, 0.5);
+    list-style-type: none;
+    text-align: left;
+    border-radius: 5px;
+}
+
+ul > li {
+    padding: 5px;
+}
+
+ul > li:not(span) {
+    text-shadow: 6px 1px 10px rgba(0, 0, 0, 0.461);
+}
+
+ul > li > span {
+    margin-left: 10px;
+    font-family: sans-serif;
+    color: white;
+    text-shadow: 3px 1px 5px rgb(200, 255, 255);
+}
+
+#input-area {
+    width: 250px;
+    min-width: 250px;
+    background-color: rgba(75, 43, 255, 0.28);
+    text-align: center;
+    position: fixed;
+    left: 5%;
+    bottom: 7.5%;
+    padding: 15px;
+    border: 2px solid rgba(28, 15, 145, 0.379);
+    border-radius: 60px 10px;
+}
+
+#input-box {
+    height: 100%;
+    min-width: 125px;
+    box-sizing: content-box;
+    border-radius: 5%;
+    margin-left: 2px;
+    font-family: Verdana;
+}
+
+#hidden-span {
+    visibility: hidden;
+    position: fixed;
+}
+
+#ui-message {
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 28px;
+    color: rgb(40, 255, 200);
+    text-shadow: 5px 5px 7.5px black;
+    position: fixed;
+    right: 17.5%;
+    bottom: 5%;
+}

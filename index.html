@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-    <script defer src="app.js"></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Text Board</title>
+        <script defer src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+        <script defer src="app.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Da wall</h1>
+            <p><i>of text...</i></p>
+        </header>
 
-    <ul>
-    </ul>
+        <ul>
+        </ul>
 
-    <input placeholder="message">
-    <!-- <button>Send</button> -->
-    
-</body>
+        <footer>
+            <div id="input-area">
+                <label>You :</label>
+                <input type="text" id="input-box" placeholder="Send a message..." maxlength="100" minlength="1">
+                <span id="hidden-span"></span>
+            </div>
+            <label id="ui-message"><strong>How are the vibes?</strong></label>
+        </footer>
+
+        <!-- Used for dynamic input box size -->
+        <script>
+        </script>
+    </body>
 </html>
