@@ -1,4 +1,4 @@
-const socket = io("ws://192.168.1.222:3000");
+const socket = io("http://108.237.28.44:3000");
 const inputBox = document.getElementById("input-box");
 let username;
 
