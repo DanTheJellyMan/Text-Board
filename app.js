@@ -1,4 +1,4 @@
-const socket = io("http://192.168.1.222:3000");
+const socket = io("https://98d5170f0da5ce65182deccc4844d83b.loophole.site");
 const inputBox = document.getElementById("input-box");
 let username;
 
@@ -26,7 +26,7 @@ socket.on("message", (text) => {
 function grabUsername() {
     username = prompt("What's your name?");
     while (true) {
-        if (username && isNaN(username)) {
+        if (username && !username.includes(" ") && username == /[A-z]/) {
             username = username.trim();
             console.log("username acquired");
             socket.emit("grabbed-username", username);
