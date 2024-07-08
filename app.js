@@ -1,6 +1,6 @@
-const socket = io("http://localhost:3000");
+const socket = io("https://f6d482d0835b98450104a47992eabe79.loophole.site");
 const inputBox = document.getElementById("input-box");
-let username;
+let username = null;
 
 // Let user know they've connected to the server
 socket.on("user-connected", (notice) => console.log(notice));
@@ -25,37 +25,43 @@ socket.on("message", (text) => {
 
 function grabUsername() {
     username = prompt("What's your name?").trim();
+    console.log(username);
     
     const strReq = (str) => {
+        if (!str) return [false, "Username cannot be empty. Please enter a valid username."]
+
         for (const char of str) {
             // Checks every character of a string for letters or numbers. If not, return false, and explain user's error
-            if (!/[A-z]/.test(char) && !/[0-9]/.test(char)) {
+            if (!/[A-Za-z0-9]/.test(char)) {
                 let invalidChar = [];
                 for (const iChar of str) {  // Gets every invalid character from the invalid username
-                    if (!/[A-z]/.test(iChar) || !/[0-9]/.test(iChar)) {
-                        invalidChar.push(iChar);
+                    if (!/[A-Za-z0-9]/.test(iChar)) {
+                        if (iChar === " ") {
+                            invalidChar.push(" space ");
+                        } else {
+                            invalidChar.push(iChar);
+                        }
                     }
                 }
-                return [false, `Username may ONLY contain letters or numbers!\n(not: ${invalidChar})`];
+                return [false, `Username may ONLY contain letters or numbers!\nNot allowed: (${invalidChar.join(", ")})`];
             }
         }
-        return true;
+        return [true, ""];
     }
     
     while (true) {
         const strCheck = strReq(username);
-        if (username && !username.includes(" ") && strCheck[0]) {
-            console.log("username acquired");
+        if (username && strCheck[0]) {
+            console.log("Username acquired");
             socket.emit("grabbed-username", username);
             break;
         } else {
-            console.log(strCheck);
-            console.log("invalid username");
+            console.log("Invalid username");
             username = prompt(strCheck[1]);
-            continue;
         }
     }
 }
+
 
 // Places "You" in the username area of messages the user has sent
 async function chatPerspective() {
