@@ -1,4 +1,4 @@
-const socket = io("https://98d5170f0da5ce65182deccc4844d83b.loophole.site");
+const socket = io("http://localhost:3000");
 const inputBox = document.getElementById("input-box");
 let username;
 
@@ -24,16 +24,34 @@ socket.on("message", (text) => {
 });
 
 function grabUsername() {
-    username = prompt("What's your name?");
+    username = prompt("What's your name?").trim();
+    
+    const strReq = (str) => {
+        for (const char of str) {
+            // Checks every character of a string for letters or numbers. If not, return false, and explain user's error
+            if (!/[A-z]/.test(char) && !/[0-9]/.test(char)) {
+                let invalidChar = [];
+                for (const iChar of str) {  // Gets every invalid character from the invalid username
+                    if (!/[A-z]/.test(iChar) || !/[0-9]/.test(iChar)) {
+                        invalidChar.push(iChar);
+                    }
+                }
+                return [false, `Username may ONLY contain letters or numbers!\n(not: ${invalidChar})`];
+            }
+        }
+        return true;
+    }
+    
     while (true) {
-        if (username && !username.includes(" ") && username == /[A-z]/) {
-            username = username.trim();
+        const strCheck = strReq(username);
+        if (username && !username.includes(" ") && strCheck[0]) {
             console.log("username acquired");
             socket.emit("grabbed-username", username);
             break;
         } else {
+            console.log(strCheck);
             console.log("invalid username");
-            username = prompt("Valid username required before entering!");
+            username = prompt(strCheck[1]);
             continue;
         }
     }
