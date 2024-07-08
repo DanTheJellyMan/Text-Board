@@ -1,4 +1,4 @@
-const socket = io("https://f6d482d0835b98450104a47992eabe79.loophole.site");
+const socket = io("https://a41d69a3053231c3a0718225faed483d.loophole.site");
 const inputBox = document.getElementById("input-box");
 let username = null;
 
