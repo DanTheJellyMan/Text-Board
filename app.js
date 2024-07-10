@@ -1,9 +1,9 @@
-const socket = io("https://a41d69a3053231c3a0718225faed483d.loophole.site");
+const socket = io("https://localhost:3000");
 const inputBox = document.getElementById("input-box");
 let username = null;
 
 // Let user know they've connected to the server
-socket.on("user-connected", (notice) => console.log(notice));
+socket.on("connection-status", (notice) => console.log(notice));
 
 // Send a message when user presses Enter in the text box
 inputBox.addEventListener("keydown", (event) => {
@@ -24,9 +24,7 @@ socket.on("message", (text) => {
 });
 
 function grabUsername() {
-    username = prompt("What's your name?").trim();
-    console.log(username);
-    
+    username = prompt("What's your name?");
     const strReq = (str) => {
         if (!str) return [false, "Username cannot be empty. Please enter a valid username."]
 
@@ -43,7 +41,7 @@ function grabUsername() {
                         }
                     }
                 }
-                return [false, `Username may ONLY contain letters or numbers!\nNot allowed: (${invalidChar.join(", ")})`];
+                return [false, `Username may ONLY contain letters or numbers!\nNot allowed: (${invalidChar.join("   ")})`];
             }
         }
         return [true, ""];
@@ -53,7 +51,8 @@ function grabUsername() {
         const strCheck = strReq(username);
         if (username && strCheck[0]) {
             console.log("Username acquired");
-            socket.emit("grabbed-username", username);
+            socket.emit("grabbed-username", username.trim());
+            document.getElementById("ui-message").innerHTML += ` ${username}?`;
             break;
         } else {
             console.log("Invalid username");
