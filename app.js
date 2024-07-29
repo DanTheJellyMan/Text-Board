@@ -1,4 +1,8 @@
-const socket = io("https://localhost:3000");
+const socket = io('https://text-board.duckdns.org', {
+    secure: true,
+    reconnection: true,
+    rejectUnauthorized: false
+});
 const inputBox = document.getElementById("input-box");
 let username = null;
 
