@@ -1,14 +1,29 @@
-const socket = io('https://text-board.duckdns.org', {
+const socket = io('https://text-board.duckdns.org:443', {
     secure: true,
     reconnection: true,
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
+    transports: ['websocket', 'polling'],
+    path: '/socket.io',
+    reconnectionAttempts: 10,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 10000,
+    randomizationFactor: 0.5,
+    timeout: 30000, // 30 seconds
+    autoConnect: true,
+    debug: true
 });
+
 const inputBox = document.getElementById("input-box");
 let username = null;
 
 // Let user know they've connected to the server
 socket.on("connection-status", (notice) => console.log(notice));
 
+socket.on("grab-username", () => {
+    username = grabUsername();
+    socket.emit("grabbed-username", username);
+    console.log(username);
+});
 // Send a message when user presses Enter in the text box
 inputBox.addEventListener("keydown", (event) => {
     if (event.key == "Enter") {
@@ -16,8 +31,6 @@ inputBox.addEventListener("keydown", (event) => {
         inputBox.value = null;
     }
 });
-
-socket.on("grab-username", grabUsername);
 
 // Handle displaying received messages from the server
 socket.on("message", (text) => {
@@ -28,8 +41,8 @@ socket.on("message", (text) => {
 });
 
 function grabUsername() {
-    username = prompt("What's your name?");
-    const strReq = (str) => {
+    return prompt("What's your name?");
+    /* const strReq = (str) => {
         if (!str) return [false, "Username cannot be empty. Please enter a valid username."]
 
         for (const char of str) {
@@ -62,7 +75,7 @@ function grabUsername() {
             console.log("Invalid username");
             username = prompt(strCheck[1]);
         }
-    }
+    } */
 }
 
 
