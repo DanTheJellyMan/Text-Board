@@ -1,4 +1,4 @@
-const ws = new WebSocket('wss://text-board.duckdns.org');
+const ws = new WebSocket('ws://text-board.duckdns.org');
 const inputBox = document.getElementById("input-box");
 let username = null;
 
