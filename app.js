@@ -1,5 +1,4 @@
 const socket = io("https://wallatext.serveo.net");
-
 const inputBox = document.getElementById("input-box");
 let username = null;
 
@@ -30,7 +29,6 @@ socket.on("message", (text) => {
 function grabUsername() {
     return prompt("What's your name?");
 }
-
 
 // Places "You" in the username area of messages the user has sent
 async function chatPerspective() {
