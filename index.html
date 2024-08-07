@@ -4,27 +4,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
-        <title>Text Board</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <title>Wallatext</title>
+        <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico">
         <script defer src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
         <script defer src="app.js"></script>
     </head>
     <body>
         <header>
-            <h1>Da wall</h1>
-            <p><i>of text...</i></p>
+            <h1>Wall-a-Text</h1>
+            <img src="./assets/chat icon.png">
         </header>
 
-        <ul>
+        <ul class="chat wall">
+
         </ul>
+        <div class="chat bg1"></div>
+        <div class="chat bg2"></div>
+        <div class="chat bg3"></div>
 
         <footer>
             <div id="input-area">
-                <label>You :</label>
-                <input type="text" id="input-box" placeholder="Send a message..." maxlength="100" minlength="1">
+                <div><label>You :</label></div>
+                <input placeholder="Send a message..." maxlength="100" minlength="1">
                 <span id="hidden-span"></span>
             </div>
-            <strong><label id="ui-message">How are the vibes</label></strong>
         </footer>
 
         <!-- Used for dynamic input box size -->
