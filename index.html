@@ -23,13 +23,20 @@
         <footer>
             <div id="input-area">
                 <div><label>You :</label></div>
-                <input placeholder="Send a message..." maxlength="100" minlength="1">
+                <input placeholder="Send a message..." maxlength="50" minlength="1" required>
                 <span id="hidden-span"></span>
             </div>
         </footer>
 
-        <!-- Used for dynamic input box size -->
+        <!--Used for dynamic input box size-->
         <script>
+            // Focus on input
+            document.querySelector("input").focus();
+            document.addEventListener("keydown", (event) => {
+                if ((event.key == "Enter" || "Space") && event.target != document.querySelector("input")) {
+                    document.querySelector("input").focus();
+                }
+            });
         </script>
     </body>
 </html>
